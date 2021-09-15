@@ -17,7 +17,7 @@ export function Drink() {
   useEffect(() => {
 
     if (params.drinkName !== drink.strDrink) {
-      history.push('/404')
+      history.push('/not-a-drink')
     }
   }, [params, drink])
 
