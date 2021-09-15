@@ -5,11 +5,9 @@ interface Drink {
   strDrink: string;
   strDrinkThumb: string;
   strInstructions: string;
-  strIngredients: {
-    [key: string]: string
-  }[];
-  strMeasures: {
-    [key: string]: string
+  ingredientsWithMeasures: {
+    ingredient: string;
+    measure: string
   }[];
 }
 
@@ -36,11 +34,33 @@ export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
   })
 
   async function selectDrink(drinkName: string) {
-    const response = await api.get(`/search.php?s=${drinkName}`)
-    setDrink(response.data.drinks[0])
-  }
+    const formattedDrinkName = drinkName.replaceAll('/', '%2F')
 
-  console.log(drink)
+    const response = await api.get(`/search.php?s=${formattedDrinkName}`)
+
+    const drinkData = response.data.drinks[0]
+
+    let ingredientsWithMeasures = []
+
+    for (let i = 1; i <= 15; i++) {
+      if (drinkData[`strIngredient${i}`] === null || drinkData[`strIngredient${i}`] === '') {
+        break
+      }
+      ingredientsWithMeasures.push({
+        ingredient: drinkData[`strIngredient${i}`],
+        measure: drinkData[`strMeasure${i}`]
+      })
+    }
+
+    const currentDrink = {
+      ...drinkData,
+      ingredientsWithMeasures
+    }
+
+    localStorage.setItem('@Drunk-o-clock: drink', JSON.stringify(currentDrink))
+
+    setDrink(currentDrink)
+  }
 
   return (
     <DrinkContext.Provider value={{ drink, selectDrink }}>

@@ -1,42 +1,43 @@
 import { useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
-import { api } from "../../services/axios"
-
-import { CategoryProps, DrinkType } from "./types"
-
-import { CategoryContainer, DrinksContainer } from "./styles"
 import { useDrink } from "../../hooks/useDrink"
+import { useCategory } from "../../hooks/useCategory"
+
+import { CategoryProps, CategoryDrinkType } from "./types"
+
+import { CategoryContainer, DrinksContainer, DrinkContainer } from "./styles"
 
 export function Category({ name }: CategoryProps) {
   const { selectDrink } = useDrink()
+  const { getDrinksByCategory } = useCategory()
+  const history = useHistory()
 
-  const [drinks, setDrinks] = useState<DrinkType[]>([])
+  const [drinks, setDrinks] = useState<CategoryDrinkType[]>([])
 
   useEffect(() => {
-    async function getData() {
-      const response = await api.get(`/filter.php?c=${name}`);
+    getDrinksByCategory(name).then((response) => {
+      setDrinks(response)
+    })
+  }, [name, getDrinksByCategory])
 
-      const { data } = response
+  async function handleClick(drinkName: string) {
+    await selectDrink(drinkName)
 
-      setDrinks(data.drinks)
-    }
-
-    getData()
-  }, [name])
-
+    history.push(`/drinks/${drinkName}`)
+  }
 
   return (
     <CategoryContainer>
       <h3>{name}</h3>
       <DrinksContainer>
         {drinks.map(drink => (
-          <div key={drink.idDrink}>
-            <Link to={`/drinks/${drink.strDrink}`} onClick={() => selectDrink(drink.strDrink)}>
+          <DrinkContainer key={drink.idDrink}>
+            <div onClick={() => handleClick(drink.strDrink)}>
               <img src={drink.strDrinkThumb} alt="#" />
               <span>{drink.strDrink}</span>
-            </Link>
-          </div>
+            </div>
+          </DrinkContainer>
         ))}
       </DrinksContainer>
     </CategoryContainer>

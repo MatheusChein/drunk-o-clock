@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import { HeaderContainer, HeaderContent } from "./styles";
 
 export function Header() {
+  const githubProfile = 'https://github.com/MatheusChein/'
+
   return (
     <HeaderContainer>
       <HeaderContent>
-        <h1>Drunk o'clock</h1>
-        <p>Made by <span>Matheus</span></p>
+        <Link to='/'>Drunk o'clock</Link>
+        <p>Made by <a target='_blank' rel='noreferrer' href={githubProfile}>Matheus Chein</a></p>
       </HeaderContent>
     </HeaderContainer>
   )

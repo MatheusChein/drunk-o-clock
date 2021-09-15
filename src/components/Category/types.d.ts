@@ -2,7 +2,7 @@ export interface CategoryProps {
   name: string
 }
 
-export interface DrinkType {
+export interface CategoryDrinkType {
   strDrink: string;
   strDrinkThumb: string;
   idDrink: string;

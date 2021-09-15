@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       <CreateGlobalStyle />
-      <Header />
       <Router>
         <DrinkContextProvider>
+          <Header />
           <Routes/>
         </DrinkContextProvider>
       </Router>

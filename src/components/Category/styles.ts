@@ -30,28 +30,28 @@ export const DrinksContainer = styled.div`
     background-color: rgba(131, 90, 253, 0.7);
     }
   }
+`
 
+export const DrinkContainer = styled.div`
   div {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
 
-    a {
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding-bottom: 1rem;
+    transition: 0.2s;
 
-      transition: 0.2s;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-10px);
+    }
 
-      &:hover {
-        transform: translateY(-10px);
-      }
-
-      img {
-        margin-top: 10px;
-        width: 150px;
-        height: 150px;
-        border-radius: 15px;
-      }
+    img {
+      margin-top: 10px;
+      width: 150px;
+      height: 150px;
+      border-radius: 15px;
     }
   }
 `
