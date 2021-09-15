@@ -14,6 +14,7 @@ interface Drink {
 interface DrinkContextType {
   drink: Drink;
   selectDrink: (drinkName: string) => Promise<void>
+  getRandomDrink: () => Promise<any>
 }
 
 export const DrinkContext = createContext({} as DrinkContextType)
@@ -33,6 +34,31 @@ export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
     return {} as Drink
   })
 
+  function saveDrinkResponseToDrinkState(drink: any) {
+    let ingredientsWithMeasures = []
+
+    for (let i = 1; i <= 15; i++) {
+      if (drink[`strIngredient${i}`] === null || drink[`strIngredient${i}`] === '') {
+        break
+      }
+      ingredientsWithMeasures.push({
+        ingredient: drink[`strIngredient${i}`],
+        measure: drink[`strMeasure${i}`]
+      })
+    }
+
+    const currentDrink = {
+      ...drink,
+      ingredientsWithMeasures
+    }
+
+    localStorage.setItem('@Drunk-o-clock: drink', JSON.stringify(currentDrink))
+
+    setDrink(currentDrink)
+
+    return currentDrink
+  }
+
   async function selectDrink(drinkName: string) {
     const formattedDrinkName = drinkName.replaceAll('/', '%2F')
 
@@ -40,30 +66,21 @@ export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
 
     const drinkData = response.data.drinks[0]
 
-    let ingredientsWithMeasures = []
+    saveDrinkResponseToDrinkState(drinkData)
+  }
 
-    for (let i = 1; i <= 15; i++) {
-      if (drinkData[`strIngredient${i}`] === null || drinkData[`strIngredient${i}`] === '') {
-        break
-      }
-      ingredientsWithMeasures.push({
-        ingredient: drinkData[`strIngredient${i}`],
-        measure: drinkData[`strMeasure${i}`]
-      })
-    }
+  async function getRandomDrink() {
+    const response = await api.get(`/random.php`)
 
-    const currentDrink = {
-      ...drinkData,
-      ingredientsWithMeasures
-    }
+    const drinkData = response.data.drinks[0]
 
-    localStorage.setItem('@Drunk-o-clock: drink', JSON.stringify(currentDrink))
+    const randomDrink = saveDrinkResponseToDrinkState(drinkData)
 
-    setDrink(currentDrink)
+    return randomDrink
   }
 
   return (
-    <DrinkContext.Provider value={{ drink, selectDrink }}>
+    <DrinkContext.Provider value={{ drink, selectDrink, getRandomDrink }}>
       {children}
     </DrinkContext.Provider>
   )

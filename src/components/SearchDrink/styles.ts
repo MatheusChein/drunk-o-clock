@@ -1,7 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+interface DrinksContainerProps {
+  visible: boolean
+}
 
 export const SearchDrinkContainer = styled.div`
-  width: 1200px;
   padding: 3rem 0 1.5rem;
 
   h2 {
@@ -56,11 +59,29 @@ export const DrinkInputContainer = styled.div`
   }
 `
 
-export const DrinksContainer = styled.div`
+export const DrinksContainer = styled.div<DrinksContainerProps>`
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 30px;
+    
+  ${props => props.visible && css`
+    height: 15rem;
+    overflow-y: scroll;
+  `}
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background: #d6d6d6;
+  }
+      
+  &::-webkit-scrollbar-thumb {
+    background: var(--dark-pink);
+
+    &:hover {
+      background-color: rgba(131, 90, 253, 0.7);
+    }
+  }
   
   div {
     display: flex;

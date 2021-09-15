@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, FormEvent } from "react";
+import { ChangeEvent, useState, FormEvent, FocusEvent } from "react";
 import { useHistory } from "react-router";
 
 import { SearchDrinkProps } from "./types";
@@ -11,8 +11,9 @@ import { useDrink } from "../../hooks/useDrink";
 import { Button } from "../Button";
 
 export function SearchDrink({ categories }: SearchDrinkProps) {
-  const { getDrinksByCategory } = useCategory()
   const history = useHistory()
+
+  const { getDrinksByCategory } = useCategory()
   const { selectDrink } = useDrink()
 
   const [category, setCategory] = useState('')
@@ -26,6 +27,7 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     setCategory(event.target.value)
     setCurrentDrink('')
     setIsButtonVisible(false)
+    setIsDrinkSelectorVisible(false)
 
     getDrinksByCategory(event.target.value).then(response => {
       setDrinks(response)
@@ -41,7 +43,7 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     setCurrentDrink(typedDrink)
 
     if (typedDrink === '') {
-      setFilteredDrinks([])
+      setFilteredDrinks(drinks)
       return
     }
     
@@ -58,7 +60,7 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
   function handleDrinkClick(drinkName: string) {
     setIsDrinkSelectorVisible(false)
     setCurrentDrink(drinkName)
-
+    
     const drinkClicked = drinks.find(drink => drink.strDrink === drinkName)
     
     if (drinkClicked) {
@@ -79,10 +81,17 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     }
   }
 
+  function handleBlur(event: FocusEvent) {
+
+    if (event.relatedTarget === null) {
+      setIsDrinkSelectorVisible(false)
+    }
+  }
+
   return (
     <SearchDrinkContainer>
       <h2>Search Drink</h2>
-      <SearchDrinkForm onSubmit={(event) => handleSubmit(event)}>
+      <SearchDrinkForm onSubmit={handleSubmit}>
         <label>
           Choose a drink category: 
           <select value={category} onChange={(event) => handleCategoryChange(event)}>
@@ -95,15 +104,18 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
         {category && (
           <label>
             Choose your drink: 
-            <DrinkInputContainer>
+            <DrinkInputContainer >
               <input
+                placeholder='Type the drink name! Example: Caipirinha'
                 value={currentDrink}
-                onChange={(event) => handleDrinkChange(event)} 
+                onChange={(event) => handleDrinkChange(event)}
+                onFocus={() => {if (currentDrink === '' || !currentDrink) { setFilteredDrinks(drinks); setIsDrinkSelectorVisible(true) }}}
+                onBlur={handleBlur}
               />
-              <DrinksContainer>
+              <DrinksContainer visible={isDrinkSelectorVisible}>
                 {isDrinkSelectorVisible && filteredDrinks.map(drink => (
-                  <div key={drink.idDrink} onClick={() => handleDrinkClick(drink.strDrink)}>
-                    <img src={drink.strDrinkThumb} alt="drink" />
+                  <div key={drink.idDrink} tabIndex={-1} onClick={() => handleDrinkClick(drink.strDrink)}>
+                    <img src={drink.strDrinkThumb} alt={drink.strDrink} />
                     <span>{drink.strDrink}</span>
                   </div>
                 ))}

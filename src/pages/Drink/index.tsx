@@ -1,10 +1,25 @@
+import { useEffect } from "react"
+import { Link, useParams, useHistory } from "react-router-dom"
+import { Button } from "../../components/Button"
 import { useDrink } from "../../hooks/useDrink"
 
 import { DrinkContainer, DrinkContent, DrinkIngredients, DrinkInstructions } from "./styles"
 
+interface Params {
+  drinkName: string
+}
 
 export function Drink() {
   const { drink } = useDrink()
+  const params: Params = useParams()
+  const history = useHistory()
+
+  useEffect(() => {
+
+    if (params.drinkName !== drink.strDrink) {
+      history.push('/404')
+    }
+  }, [params, drink])
 
   return (
     <DrinkContainer>
@@ -27,6 +42,12 @@ export function Drink() {
             </DrinkInstructions>
           )}
         </DrinkContent>
+
+        <Link to='/'>
+          <Button>
+            Go back
+          </Button>
+        </Link>
     </DrinkContainer>
   )
 }

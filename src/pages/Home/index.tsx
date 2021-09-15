@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories';
 
 import { CategoryType } from "../../components/Categories/types"
+import { RandomDrink } from '../../components/RandomDrink';
 import { SearchDrink } from '../../components/SearchDrink';
 import { api } from '../../services/axios';
 
-import { HomePage } from './styles';
+import { HomePage, TopContainer } from './styles';
 
 export function Home() {
   const [categories, setCategories] = useState<CategoryType[]>([])
@@ -25,10 +26,10 @@ export function Home() {
   }, [])
   return (
     <HomePage>
-      <div>
-      
-      <SearchDrink categories={categories}/>
-      </div>
+      <TopContainer>
+        <SearchDrink categories={categories}/>
+        <RandomDrink />
+      </TopContainer>
       <Categories categories={categories}/>
     </HomePage>
   )

@@ -12,6 +12,11 @@ export const DrinkContainer = styled.div`
     font-size: 3rem;
     margin-bottom: 3rem;
   }
+
+  a {
+    align-self: center;
+    margin-top: 2rem;
+  }
 `
 
 export const DrinkContent = styled.div`

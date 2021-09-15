@@ -19,7 +19,7 @@ export function Category({ name }: CategoryProps) {
     getDrinksByCategory(name).then((response) => {
       setDrinks(response)
     })
-  }, [name, getDrinksByCategory])
+  }, [name])
 
   async function handleClick(drinkName: string) {
     await selectDrink(drinkName)
