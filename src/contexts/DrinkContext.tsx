@@ -2,6 +2,7 @@ import { createContext, ReactNode, useState } from "react";
 import { api } from "../services/axios";
 
 interface Drink {
+  idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
   strInstructions: string;
@@ -13,7 +14,7 @@ interface Drink {
 
 interface DrinkContextType {
   drink: Drink;
-  selectDrink: (drinkName: string) => Promise<void>
+  selectDrink: (drinkId: string) => Promise<void>
   getRandomDrink: () => Promise<any>
 }
 
@@ -59,10 +60,8 @@ export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
     return currentDrink
   }
 
-  async function selectDrink(drinkName: string) {
-    const formattedDrinkName = drinkName.replaceAll('/', '%2F')
-
-    const response = await api.get(`/search.php?s=${formattedDrinkName}`)
+  async function selectDrink(drinkId: string) {
+    const response = await api.get(`/lookup.php?i=${drinkId}`)
 
     const drinkData = response.data.drinks[0]
 

@@ -21,10 +21,10 @@ export function Category({ name }: CategoryProps) {
     })
   }, [name])
 
-  async function handleClick(drinkName: string) {
-    await selectDrink(drinkName)
+  async function handleClick(drinkId: string) {
+    await selectDrink(drinkId)
 
-    history.push(`/drinks/${drinkName}`)
+    history.push(`/drinks/${drinkId}`)
   }
 
   return (
@@ -33,7 +33,7 @@ export function Category({ name }: CategoryProps) {
       <DrinksContainer>
         {drinks.map(drink => (
           <DrinkContainer key={drink.idDrink}>
-            <div onClick={() => handleClick(drink.strDrink)}>
+            <div onClick={() => handleClick(drink.idDrink)}>
               <img src={drink.strDrinkThumb} alt="#" />
               <span>{drink.strDrink}</span>
             </div>

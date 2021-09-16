@@ -8,7 +8,7 @@ export function Routes() {
   return (
     <Switch>
       <Route path='/' exact component={Home} />
-      <Route path='/drinks/:drinkName' component={Drink} />
+      <Route path='/drinks/:drinkId' component={Drink} />
       <Route component={NotFound} />
     </Switch>
   )

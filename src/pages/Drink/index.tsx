@@ -6,7 +6,7 @@ import { useDrink } from "../../hooks/useDrink"
 import { DrinkContainer, DrinkContent, DrinkIngredients, DrinkInstructions } from "./styles"
 
 interface Params {
-  drinkName: string
+  drinkId: string
 }
 
 export function Drink() {
@@ -16,7 +16,9 @@ export function Drink() {
 
   useEffect(() => {
 
-    if (params.drinkName !== drink.strDrink) {
+    console.log(params)
+
+    if (params.drinkId !== drink.idDrink) {
       history.push('/not-a-drink')
     }
   }, [params, drink])

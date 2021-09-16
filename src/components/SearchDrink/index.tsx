@@ -76,8 +76,8 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     const validDrink = drinks.find(drink => drink.strDrink === currentDrink)
     
     if (validDrink) {
-      await selectDrink(currentDrink)
-      history.push(`/drinks/${currentDrink}`)
+      await selectDrink(validDrink.idDrink)
+      history.push(`/drinks/${validDrink.idDrink}`)
     }
   }
 

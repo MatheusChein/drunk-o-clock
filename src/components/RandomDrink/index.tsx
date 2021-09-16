@@ -12,7 +12,7 @@ export function RandomDrink() {
     e.preventDefault()
     
     const randomDrink = await getRandomDrink()
-    history.push(`/drinks/${randomDrink.strDrink}`)
+    history.push(`/drinks/${randomDrink.idDrink}`)
   }
 
   return (
