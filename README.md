@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+<div align="center" id="top"> 
+  &#xa0;
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <h1>Drunk o'clock</h1>
+</p>
 
-## Available Scripts
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/MatheusChein/drunk-o-clock?color=56BEB8">
 
-In the project directory, you can run:
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/MatheusChein/drunk-o-clock?color=56BEB8">
 
-### `yarn start`
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/MatheusChein/drunk-o-clock?color=56BEB8">
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<hr>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="https://github.com/MatheusChein" target="_blank">Author</a>
+</p>
 
-### `yarn test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :dart: About ##
 
-### `yarn build`
+Letmeask - App developed in React to help people select the best drinks they want to learn and party with friends! Project created using [TheCockTailDB](https://www.thecocktaildb.com/api.php)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :sparkles: Features ##
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:heavy_check_mark: Custom Search Bar;\
+:heavy_check_mark: Context API;\
+:heavy_check_mark: Custom React Hooks;\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## :rocket: Technologies ##
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The following tools were used in this project:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [React](https://pt-br.reactjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## :white_check_mark: Requirements ##
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-## Learn More
+## :checkered_flag: Starting ##
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Clone this project
+$ git clone https://github.com/MatheusChein/drunk-o-clock.git
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Access
+$ cd drunk-o-clock
+
+# Install dependencies
+$ yarn
+
+# Run the project
+$ yarn start
+
+# The server will initialize in the <http://localhost:3000>
+```
+
+Made with :heart: by <a href="https://github.com/MatheusChein" target="_blank">Matheus Chein</a>
+
+&#xa0;
+
+<a href="#top">Back to top</a>
