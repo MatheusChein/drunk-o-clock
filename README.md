@@ -27,7 +27,7 @@
 
 ## :dart: About ##
 
-Letmeask - App developed in React to help people select the best drinks they want to learn and party with friends! Project created using [TheCockTailDB](https://www.thecocktaildb.com/api.php)
+Drunk o'clock - App developed in React to help people select the best drinks they want to learn and party with friends! Project created using [TheCockTailDB](https://www.thecocktaildb.com/api.php)
 
 ## :sparkles: Features ##
 
