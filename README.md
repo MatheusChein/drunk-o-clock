@@ -2,9 +2,7 @@
   &#xa0;
 </div>
 
-<p align="center">
-  <h1>Drunk o'clock</h1>
-</p>
+<h1 align="center">Drunk o'clock</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/MatheusChein/drunk-o-clock?color=56BEB8">
