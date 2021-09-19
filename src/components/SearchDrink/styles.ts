@@ -62,14 +62,14 @@ export const SearchDrinkForm = styled.form`
   }
 
   @media (max-width: 720px) {
-    width: 15rem;
+    width: 18rem;
 
     label {
       font-size: 1.3rem;
       text-align: center;
 
       select {
-        width: 15rem;
+        width: 18rem;
       }
     }
 
@@ -97,7 +97,7 @@ export const DrinkInputContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    width: 15rem;
+    width: 18rem;
   }
 `
 
@@ -106,19 +106,19 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
   flex-direction: column;
   position: absolute;
   top: 30px;
-    
-  ${props => props.visible && css`
-    height: 15rem;
-    overflow-y: scroll;
-  `}
+  overflow-y: scroll;
+  max-height: 15rem;
 
   &::-webkit-scrollbar {
     width: 10px;
     background: #d6d6d6;
+    border-radius: 5px;
   }
       
   &::-webkit-scrollbar-thumb {
     background: var(--dark-pink);
+    border-radius: 5px;
+
 
     &:hover {
       background-color: rgba(131, 90, 253, 0.7);
@@ -148,10 +148,10 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
   }
 
   @media (max-width: 720px) {
-    height: 20rem;
+    max-height: 22rem;
 
     div { 
-      width: 15rem;
+      width: 18rem;
       gap: 0.5rem;
       align-items: center;
 

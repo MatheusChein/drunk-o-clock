@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, FormEvent, FocusEvent } from "react";
+import { ChangeEvent, useState, FormEvent, FocusEvent, useEffect } from "react";
 import { useHistory } from "react-router";
 
 import { SearchDrinkProps } from "./types";
@@ -34,7 +34,6 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     })
   }
 
-
   function handleDrinkChange(event: ChangeEvent<HTMLInputElement>) {
     setIsDrinkSelectorVisible(true)
     setIsButtonVisible(false)
@@ -57,7 +56,7 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
 
   }
 
-  function handleDrinkClick(drinkName: string) {
+  async function handleDrinkClick(drinkName: string) {
     setIsDrinkSelectorVisible(false)
     setCurrentDrink(drinkName)
     
@@ -67,7 +66,6 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
       setFilteredDrinks([drinkClicked])
       setIsButtonVisible(true)
     }
-
   }
 
   async function handleSubmit(event: FormEvent) {
@@ -88,6 +86,28 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
     }
   }
 
+  function handleFocus() {
+    if (currentDrink === '' || !currentDrink) { 
+      setFilteredDrinks(drinks)
+      setIsDrinkSelectorVisible(true)
+    }
+  }
+
+  function handleEsc(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      setIsDrinkSelectorVisible(false)
+    } 
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEsc)
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc)
+    }
+
+  }, [])
+
   return (
     <SearchDrinkContainer>
       <h2>Search Drink</h2>
@@ -106,10 +126,10 @@ export function SearchDrink({ categories }: SearchDrinkProps) {
             Choose your drink: 
             <DrinkInputContainer >
               <input
-                placeholder='Type the drink name! Example: Caipirinha'
+                placeholder='Type drink name! Example: Caipirinha'
                 value={currentDrink}
                 onChange={(event) => handleDrinkChange(event)}
-                onFocus={() => {if (currentDrink === '' || !currentDrink) { setFilteredDrinks(drinks); setIsDrinkSelectorVisible(true) }}}
+                onFocus={handleFocus}
                 onBlur={handleBlur}
               />
               <DrinksContainer visible={isDrinkSelectorVisible}>

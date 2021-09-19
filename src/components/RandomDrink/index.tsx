@@ -20,7 +20,7 @@ export function RandomDrink() {
       <h2>Random Drink</h2>
 
       <form onSubmit={handleSubmit}>
-        <Button >
+        <Button>
           Click to learn a new drink!
         </Button>
       </form>

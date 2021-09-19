@@ -16,8 +16,6 @@ export function Drink() {
 
   useEffect(() => {
 
-    console.log(params)
-
     if (params.drinkId !== drink.idDrink) {
       history.push('/not-a-drink')
     }
