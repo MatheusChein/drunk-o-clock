@@ -5,11 +5,11 @@ export const HeaderContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 0;
+  padding: 3rem;
 `
 
 export const HeaderContent = styled.div`
-  width: 1200px;
+  width: 100%;
   max-width: var(--max-container-width);
   display: flex;
   justify-content: space-between;
@@ -30,5 +30,17 @@ export const HeaderContent = styled.div`
   > a {
     font-size: 4rem;
     font-weight: 900;
+  }
+
+  @media (max-width: 720px) {
+    justify-content: center;
+
+    a {
+      font-size: 3rem;
+    }
+
+    p {
+      display: none;
+    }
   }
 `

@@ -11,6 +11,17 @@ export const SearchDrinkContainer = styled.div`
     font-size: 3rem;
     padding-bottom: 2rem;
   }
+
+  @media (max-width: 1200px) {
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    h2 {
+     font-size: 2.5rem;
+     padding-bottom: 1rem;
+    } 
+  }
 `
 
 export const SearchDrinkForm = styled.form`
@@ -39,6 +50,33 @@ export const SearchDrinkForm = styled.form`
       }
     }
   }
+
+  @media (max-width: 1200px) {
+    width: 20rem;
+
+    label {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 720px) {
+    width: 15rem;
+
+    label {
+      font-size: 1.3rem;
+      text-align: center;
+
+      select {
+        width: 15rem;
+      }
+    }
+
+    button {
+      margin-top: 0.5rem;
+    }
+  }
 `
 
 export const DrinkInputContainer = styled.div`
@@ -56,6 +94,10 @@ export const DrinkInputContainer = styled.div`
     width: 100%;
     font: 400 1.2rem 'Patrick Hand', sans-serif;
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 720px) {
+    width: 15rem;
   }
 `
 
@@ -105,5 +147,18 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
     }
   }
 
+  @media (max-width: 720px) {
+    height: 20rem;
+
+    div { 
+      width: 15rem;
+      gap: 0.5rem;
+      align-items: center;
+
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
   
 `

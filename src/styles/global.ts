@@ -17,7 +17,7 @@ export default createGlobalStyle`
     --dark-pink: #BEAEE2;
     --gray: #AAAAAA;
 
-    --max-container-width: 1440px
+    --max-container-width: 1200px
   }
 
   body {
@@ -32,5 +32,17 @@ export default createGlobalStyle`
 
   a {
     cursor: pointer;
+  }
+
+  @media (max-width: 1200px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+
+  @media (max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
   }
 `

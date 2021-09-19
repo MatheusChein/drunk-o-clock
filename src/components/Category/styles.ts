@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
+  text-align: left;
   background: var(--light-pink);
   padding: 2rem;
   border-radius: 35px;
@@ -8,13 +9,25 @@ export const CategoryContainer = styled.div`
 
   h3 {
     margin-bottom: 2rem;
-  }  
+  }
+
+  @media (max-width: 1200px) {
+    padding: 1rem 2rem;
+
+    h3 {
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    padding: 1rem 1.5rem 1.5rem;
+  }
 `
+
 export const DrinksContainer = styled.div`
   display: flex;
   overflow-x: scroll;
   gap: 1.5rem;
-
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -29,6 +42,10 @@ export const DrinksContainer = styled.div`
     &:hover {
     background-color: rgba(131, 90, 253, 0.7);
     }
+  }
+
+  @media (max-width: 720px) {
+    gap: 0.8rem;
   }
 `
 
@@ -52,6 +69,35 @@ export const DrinkContainer = styled.div`
       width: 150px;
       height: 150px;
       border-radius: 15px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    div {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    div {
+      padding-bottom: 0;
+      gap: 0.5rem;
+
+      img {
+        width: 80px;
+        height: 80px;
+      }
+
+      span {
+        font-size: 1rem;
+      }
     }
   }
 `
