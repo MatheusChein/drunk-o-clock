@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router";
 
 import { Drink } from "../pages/Drink";
 import { Home } from "../pages/Home";
-import { NotFound } from "../pages/NotFoud";
+import { NotFound } from "../pages/NotFound";
 
 export function Routes() {
   return (
