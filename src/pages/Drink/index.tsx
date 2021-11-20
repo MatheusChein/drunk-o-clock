@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
+import { Helmet } from 'react-helmet'
 import { Button } from "../../components/Button"
 import { useDrink } from "../../hooks/useDrink"
 
@@ -22,7 +23,11 @@ export function Drink() {
   }, [params, drink])
 
   return (
-    <DrinkContainer>
+    <>
+      <Helmet>
+        <title>{drink.strDrink}</title>
+      </Helmet>
+      <DrinkContainer>
         <h2>{drink.strDrink}</h2>
         <DrinkContent>
           <img src={drink.strDrinkThumb} alt="drink" />
@@ -50,6 +55,7 @@ export function Drink() {
             Go back
           </Button>
         </Link>
-    </DrinkContainer>
+      </DrinkContainer>
+    </>
   )
 }
