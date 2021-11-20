@@ -70,6 +70,10 @@ export const DrinkContainer = styled.div`
       height: 150px;
       border-radius: 15px;
     }
+
+    span {
+      margin-bottom: 1rem;
+    }
   }
 
   @media (max-width: 1200px) {

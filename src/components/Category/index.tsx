@@ -7,6 +7,7 @@ import { useCategory } from "../../hooks/useCategory"
 import { CategoryProps, CategoryDrinkType } from "./types"
 
 import { CategoryContainer, DrinksContainer, DrinkContainer } from "./styles"
+import { LoadingCircle } from "../LoadingCircle"
 
 export function Category({ name }: CategoryProps) {
   const { selectDrink } = useDrink()
@@ -14,10 +15,13 @@ export function Category({ name }: CategoryProps) {
   const history = useHistory()
 
   const [drinks, setDrinks] = useState<CategoryDrinkType[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    setIsLoading(true)
     getDrinksByCategory(name).then((response) => {
       setDrinks(response)
+      setIsLoading(false)
     })
   }, [name])
 
@@ -34,7 +38,7 @@ export function Category({ name }: CategoryProps) {
         {drinks.map(drink => (
           <DrinkContainer key={drink.idDrink}>
             <div onClick={() => handleClick(drink.idDrink)}>
-              <img src={drink.strDrinkThumb} alt="#" />
+              {isLoading ? <LoadingCircle /> : <img src={drink.strDrinkThumb} alt="#" />}
               <span>{drink.strDrink}</span>
             </div>
           </DrinkContainer>

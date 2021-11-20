@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const SearchDrinkContainer = styled.div`
-  padding: 3rem 0 1.5rem;
+export const SearchDrinkByFilterContainer = styled.div`
+  padding: 2rem 0 1.5rem;
 
   h2 {
     font-size: 3rem;
@@ -20,7 +20,7 @@ export const SearchDrinkContainer = styled.div`
   }
 `
 
-export const SearchDrinkForm = styled.form`
+export const SearchDrinkByFilterForm = styled.form`
   width: 35rem;
   display: flex;
   flex-direction: column;
@@ -49,11 +49,11 @@ export const SearchDrinkForm = styled.form`
 
   @media (max-width: 1200px) {
     width: 20rem;
+    margin: 0 auto;
 
     label {
       flex-direction: column;
       gap: 0.5rem;
-      text-align: left;
     }
   }
 

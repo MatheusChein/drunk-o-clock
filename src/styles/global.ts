@@ -17,7 +17,7 @@ export default createGlobalStyle`
     --dark-pink: #BEAEE2;
     --gray: #AAAAAA;
 
-    --max-container-width: 1200px
+    --max-container-width: 1300px
   }
 
   body {
@@ -34,7 +34,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: --max-container-width) {
     html {
       font-size: 93.75%;
     }
