@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useState } from "react";
-import { api } from "../services/axios";
+import { createContext, ReactNode, useMemo, useState } from 'react';
+import { api } from '../services/axios';
 
 interface Drink {
   idDrink: string;
@@ -8,20 +8,20 @@ interface Drink {
   strInstructions: string;
   ingredientsWithMeasures: {
     ingredient: string;
-    measure: string
+    measure: string;
   }[];
 }
 
 interface DrinkContextType {
   drink: Drink;
-  selectDrink: (drinkId: string) => Promise<void>
-  getRandomDrink: () => Promise<any>
+  selectDrink: (drinkId: string) => Promise<void>;
+  getRandomDrink: () => Promise<any>;
 }
 
-export const DrinkContext = createContext({} as DrinkContextType)
+export const DrinkContext = createContext({} as DrinkContextType);
 
 interface DrinkContextProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
@@ -29,58 +29,70 @@ export function DrinkContextProvider({ children }: DrinkContextProviderProps) {
     const storageDrink = localStorage.getItem('@Drunk-o-clock: drink');
 
     if (storageDrink) {
-      return JSON.parse(storageDrink)
+      return JSON.parse(storageDrink);
     }
 
-    return {} as Drink
-  })
+    return {} as Drink;
+  });
 
-  function saveDrinkResponseToDrinkState(drink: any) {
-    let ingredientsWithMeasures = []
+  function saveDrinkResponseToDrinkState(drinkResponse: any) {
+    const ingredientsWithMeasures = [];
 
     for (let i = 1; i <= 15; i++) {
-      if (drink[`strIngredient${i}`] === null || drink[`strIngredient${i}`] === '') {
-        break
+      if (
+        drinkResponse[`strIngredient${i}`] === null ||
+        drinkResponse[`strIngredient${i}`] === ''
+      ) {
+        break;
       }
       ingredientsWithMeasures.push({
-        ingredient: drink[`strIngredient${i}`],
-        measure: drink[`strMeasure${i}`]
-      })
+        ingredient: drinkResponse[`strIngredient${i}`],
+        measure: drinkResponse[`strMeasure${i}`],
+      });
     }
 
     const currentDrink = {
-      ...drink,
-      ingredientsWithMeasures
-    }
+      ...drinkResponse,
+      ingredientsWithMeasures,
+    };
 
-    localStorage.setItem('@Drunk-o-clock: drink', JSON.stringify(currentDrink))
+    localStorage.setItem('@Drunk-o-clock: drink', JSON.stringify(currentDrink));
 
-    setDrink(currentDrink)
+    setDrink(currentDrink);
 
-    return currentDrink
+    return currentDrink;
   }
 
   async function selectDrink(drinkId: string) {
-    const response = await api.get(`/lookup.php?i=${drinkId}`)
+    const response = await api.get(`/lookup.php?i=${drinkId}`);
 
-    const drinkData = response.data.drinks[0]
+    const drinkData = response.data.drinks[0];
 
-    saveDrinkResponseToDrinkState(drinkData)
+    saveDrinkResponseToDrinkState(drinkData);
   }
 
   async function getRandomDrink() {
-    const response = await api.get(`/random.php`)
+    const response = await api.get(`/random.php`);
 
-    const drinkData = response.data.drinks[0]
+    const drinkData = response.data.drinks[0];
 
-    const randomDrink = saveDrinkResponseToDrinkState(drinkData)
+    const randomDrink = saveDrinkResponseToDrinkState(drinkData);
 
-    return randomDrink
+    return randomDrink;
   }
 
+  const contextValue = useMemo(
+    () => ({
+      drink,
+      selectDrink,
+      getRandomDrink,
+    }),
+    [drink],
+  );
+
   return (
-    <DrinkContext.Provider value={{ drink, selectDrink, getRandomDrink }}>
+    <DrinkContext.Provider value={contextValue}>
       {children}
     </DrinkContext.Provider>
-  )
+  );
 }

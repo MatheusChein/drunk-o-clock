@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HomePage = styled.main`
   display: flex;
@@ -16,7 +16,7 @@ export const HomePage = styled.main`
   @media (max-width: 720px) {
     padding: 0 1.2rem;
   }
-`
+`;
 
 export const TopContainer = styled.div`
   width: 100%;
@@ -30,7 +30,6 @@ export const TopContainer = styled.div`
     justify-content: space-between;
   }
 
-
   @media (max-width: 1200px) {
     align-items: center;
     gap: 0;
@@ -40,5 +39,4 @@ export const TopContainer = styled.div`
       align-items: center;
     }
   }
-`
-
+`;

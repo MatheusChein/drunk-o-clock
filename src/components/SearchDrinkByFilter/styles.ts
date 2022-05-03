@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SearchDrinkByFilterContainer = styled.div`
   padding: 2rem 0 1.5rem;
@@ -14,11 +14,11 @@ export const SearchDrinkByFilterContainer = styled.div`
 
   @media (max-width: 720px) {
     h2 {
-     font-size: 2.5rem;
-     padding-bottom: 1rem;
-    } 
+      font-size: 2.5rem;
+      padding-bottom: 1rem;
+    }
   }
-`
+`;
 
 export const SearchDrinkByFilterForm = styled.form`
   width: 35rem;
@@ -73,4 +73,4 @@ export const SearchDrinkByFilterForm = styled.form`
       margin-top: 0.5rem;
     }
   }
-`
+`;

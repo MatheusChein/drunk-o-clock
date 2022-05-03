@@ -1,20 +1,25 @@
-import { LoadingCircleContainer } from './styles'
+import { LoadingCircleContainer } from './styles';
 
-interface LoadingCircleProps{
+interface LoadingCircleProps {
   marginVertical?: string;
   height?: string;
   width?: string;
   className?: string;
 }
 
-export function LoadingCircle({ marginVertical, height, width, className }: LoadingCircleProps) {
+export function LoadingCircle({
+  marginVertical,
+  height,
+  width,
+  className,
+}: LoadingCircleProps) {
   return (
-    <LoadingCircleContainer 
+    <LoadingCircleContainer
       style={{
         margin: marginVertical ? `${marginVertical} auto` : '0 auto',
-        height: height ?? '3rem', 
-        width: width ?? '3rem'
+        height: height ?? '3rem',
+        width: width ?? '3rem',
       }}
     />
-  )
+  );
 }

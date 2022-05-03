@@ -2,34 +2,33 @@ import { useEffect, useState } from 'react';
 
 import { Categories } from '../../components/Categories';
 
-import { CategoryType } from "../../components/Categories/types"
+import { CategoryType } from '../../components/Categories/types.d';
 import { RandomDrink } from '../../components/RandomDrink';
 import { SearchDrink } from '../../components/SearchDrink';
 import { SearchDrinkByFilter } from '../../components/SearchDrinkByFilter';
 import { api } from '../../services/axios';
 
 import { HomePage, TopContainer } from './styles';
-import { Ingredient } from './types';
+import { Ingredient } from './types.d';
 
 export function Home() {
-  const [categories, setCategories] = useState<CategoryType[]>([])
-  const [ingredients, setIngredients] = useState<Ingredient[]>([])
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
 
   useEffect(() => {
     async function getData() {
-      const categoriesResponse = await api.get('/list.php?c=list')
-      const ingredientsResponse = await api.get('/list.php?i=list')
+      const categoriesResponse = await api.get('/list.php?c=list');
+      const ingredientsResponse = await api.get('/list.php?i=list');
 
-      const drinks: CategoryType[] = categoriesResponse.data.drinks
-      const strIngredients: Ingredient[] = ingredientsResponse.data.drinks
+      const { drinks } = categoriesResponse.data;
+      const strIngredients: Ingredient[] = ingredientsResponse.data.drinks;
 
-      setCategories(drinks)
-      setIngredients(strIngredients)
+      setCategories(drinks);
+      setIngredients(strIngredients);
     }
 
-    getData()
-
-  }, [])
+    getData();
+  }, []);
   return (
     <HomePage>
       <TopContainer>
@@ -39,11 +38,14 @@ export function Home() {
         </div>
 
         <div>
-          <SearchDrinkByFilter filterTitle='category' categories={categories}/>
-          <SearchDrinkByFilter filterTitle='ingredient' ingredients={ingredients}/>
+          <SearchDrinkByFilter filterTitle="category" categories={categories} />
+          <SearchDrinkByFilter
+            filterTitle="ingredient"
+            ingredients={ingredients}
+          />
         </div>
       </TopContainer>
-      <Categories categories={categories}/>
+      <Categories categories={categories} />
     </HomePage>
-  )
+  );
 }

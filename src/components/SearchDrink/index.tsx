@@ -1,27 +1,26 @@
-import { useState, FormEvent } from "react";
-import { useHistory } from "react-router";
+import { useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
-
-import { SearchDrinkContainer, SearchDrinkForm } from "./styles";
-import { useDrink } from "../../hooks/useDrink";
-import { Button } from "../Button";
-import { DrinkInput } from "../DrinkInput";
+import { SearchDrinkContainer, SearchDrinkForm } from './styles';
+import { useDrink } from '../../hooks/useDrink';
+import { Button } from '../Button';
+import { DrinkInput } from '../DrinkInput';
 
 export function SearchDrink() {
-  const history = useHistory()
+  const history = useHistory();
 
-  const { selectDrink } = useDrink()
+  const { selectDrink } = useDrink();
 
-  const [currentDrink, setCurrentDrink] = useState('')
-  const [currentDrinkId, setCurrentDrinkId] = useState('')
-  const [isButtonVisible, setIsButtonVisible] = useState(false)
+  const [currentDrink, setCurrentDrink] = useState('');
+  const [currentDrinkId, setCurrentDrinkId] = useState('');
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   async function handleSubmit(event: FormEvent) {
-    event.preventDefault()
-    
+    event.preventDefault();
+
     if (currentDrinkId) {
-      await selectDrink(currentDrinkId)
-      history.push(`/drinks/${currentDrinkId}`)
+      await selectDrink(currentDrinkId);
+      history.push(`/drinks/${currentDrinkId}`);
     }
   }
 
@@ -36,11 +35,9 @@ export function SearchDrink() {
           setCurrentDrinkId={setCurrentDrinkId}
         />
         {isButtonVisible && (
-          <Button type='submit'>
-            See drink instructions!
-          </Button>
+          <Button type="submit">See drink instructions!</Button>
         )}
       </SearchDrinkForm>
     </SearchDrinkContainer>
-  )
+  );
 }

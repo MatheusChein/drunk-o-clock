@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DrinkContainer = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const DrinkContainer = styled.div`
   padding: 3rem 0;
   width: 100%;
   align-items: center;
-  
+
   h2 {
     font-size: 3rem;
     margin-bottom: 3rem;
@@ -26,7 +26,7 @@ export const DrinkContainer = styled.div`
       margin-top: 1rem;
     }
   }
-`
+`;
 
 export const DrinkContent = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ export const DrinkContent = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
-`
+`;
 
 export const DrinkIngredients = styled.div`
   display: flex;
@@ -77,7 +77,7 @@ export const DrinkIngredients = styled.div`
 
   @media (max-width: 1200px) {
     gap: 0.1rem;
-    
+
     h3 {
       margin-bottom: 0.9rem;
     }
@@ -96,7 +96,7 @@ export const DrinkIngredients = styled.div`
       }
     }
   }
-`
+`;
 
 export const DrinkInstructions = styled.div`
   max-width: 20rem;
@@ -117,4 +117,4 @@ export const DrinkInstructions = styled.div`
       font-size: 1.3rem;
     }
   }
-`
+`;

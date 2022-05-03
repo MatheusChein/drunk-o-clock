@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface DrinksContainerProps {
-  visible: boolean
+  visible: boolean;
 }
 
 export const DrinkInputContainer = styled.div`
@@ -24,7 +24,7 @@ export const DrinkInputContainer = styled.div`
   @media (max-width: 720px) {
     width: 18rem;
   }
-`
+`;
 
 export const DrinksContainer = styled.div<DrinksContainerProps>`
   display: flex;
@@ -39,17 +39,16 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
     background: #d6d6d6;
     border-radius: 5px;
   }
-      
+
   &::-webkit-scrollbar-thumb {
     background: var(--dark-pink);
     border-radius: 5px;
-
 
     &:hover {
       background-color: rgba(131, 90, 253, 0.7);
     }
   }
-  
+
   div {
     display: flex;
     gap: 1rem;
@@ -75,7 +74,7 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
   @media (max-width: 720px) {
     max-height: 22rem;
 
-    div { 
+    div {
       width: 18rem;
       gap: 0.5rem;
       align-items: center;
@@ -85,5 +84,4 @@ export const DrinksContainer = styled.div<DrinksContainerProps>`
       }
     }
   }
-  
-`
+`;

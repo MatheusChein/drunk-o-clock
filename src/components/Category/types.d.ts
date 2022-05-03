@@ -1,5 +1,5 @@
 export interface CategoryProps {
-  name: string
+  name: string;
 }
 
 export interface CategoryDrinkType {

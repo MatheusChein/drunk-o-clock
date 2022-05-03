@@ -1,107 +1,120 @@
-import { useEffect, useState, FocusEvent, ChangeEvent } from "react"
-import { api } from "../../services/axios";
-import { CategoryDrinkType } from "../Category/types";
-import { DrinkInputContainer, DrinksContainer } from "./styles";
-import { DrinkInputProps } from "./types";
+import { useEffect, useState, FocusEvent } from 'react';
+import { useDebounce } from '../../hooks/useDebounce';
+import { api } from '../../services/axios';
+import { CategoryDrinkType } from '../Category/types.d';
+import { DrinkInputContainer, DrinksContainer } from './styles';
+import { DrinkInputProps } from './types.d';
 
+export function DrinkInput({
+  drinks,
+  setIsButtonVisible,
+  currentDrink,
+  setCurrentDrink,
+  setCurrentDrinkId,
+}: DrinkInputProps) {
+  const [isDrinkSelectorVisible, setIsDrinkSelectorVisible] = useState(false);
+  const [filteredDrinks, setFilteredDrinks] = useState<CategoryDrinkType[]>([]);
+  const debouncedCurrentDrink = useDebounce(currentDrink, 500);
 
-export function DrinkInput({ drinks, setIsButtonVisible, currentDrink, setCurrentDrink, setCurrentDrinkId }: DrinkInputProps) {
+  async function handleDrinkChange() {
+    setIsDrinkSelectorVisible(true);
+    setIsButtonVisible(false);
 
-  const [isDrinkSelectorVisible, setIsDrinkSelectorVisible] = useState(false)
-  const [filteredDrinks, setFilteredDrinks] = useState<CategoryDrinkType[]>([])
+    setCurrentDrink(debouncedCurrentDrink);
 
-  async function handleDrinkChange(event: ChangeEvent<HTMLInputElement>) {
-    setIsDrinkSelectorVisible(true)
-    setIsButtonVisible(false)
-    
-    const typedDrink = event.target.value
-    setCurrentDrink(typedDrink)
-
-    if (typedDrink === '' && drinks) {
-      setFilteredDrinks(drinks)
-      return
-    } else {
-      const { data } =  await api.get(`/search.php?s=${typedDrink}`)
-      setFilteredDrinks(data.drinks)
+    if (debouncedCurrentDrink === '' && drinks) {
+      setFilteredDrinks(drinks);
+      return;
     }
-    
-    const filteredDrinksTyped = drinks
+    const { data } = await api.get(`/search.php?s=${debouncedCurrentDrink}`);
+    setFilteredDrinks(data.drinks);
+
+    const filteredDrinksTyped = drinks;
 
     if (filteredDrinksTyped) {
-      const matchedDrinks = filteredDrinksTyped.filter(drink => {
-        return drink.strDrink.toLowerCase().includes(typedDrink.toLowerCase())
-      })
-      setFilteredDrinks(matchedDrinks)
+      const matchedDrinks = filteredDrinksTyped.filter(drink =>
+        drink.strDrink
+          .toLowerCase()
+          .includes(debouncedCurrentDrink.toLowerCase()),
+      );
+      setFilteredDrinks(matchedDrinks);
     }
-
   }
 
+  useEffect(() => {
+    if (currentDrink !== '') handleDrinkChange();
+  }, [debouncedCurrentDrink]);
+
   function handleDrinkClick(drinkClicked: CategoryDrinkType) {
-    setIsDrinkSelectorVisible(false)
-    setCurrentDrink(drinkClicked.strDrink)
-    setCurrentDrinkId && setCurrentDrinkId(drinkClicked.idDrink)
+    setIsDrinkSelectorVisible(false);
+    setCurrentDrink(drinkClicked.strDrink);
+    setCurrentDrinkId && setCurrentDrinkId(drinkClicked.idDrink);
 
     if (drinks) {
-      const drinkClickedExists = drinks.find(drink => drink.strDrink === drinkClicked.strDrink)
-    
+      const drinkClickedExists = drinks.find(
+        drink => drink.strDrink === drinkClicked.strDrink,
+      );
+
       if (drinkClickedExists) {
-        setFilteredDrinks([drinkClickedExists])
+        setFilteredDrinks([drinkClickedExists]);
       }
     }
-    
-    setIsButtonVisible(true)
+
+    setIsButtonVisible(true);
   }
 
   function handleBlur(event: FocusEvent) {
-
     if (event.relatedTarget === null) {
-      setIsDrinkSelectorVisible(false)
+      setIsDrinkSelectorVisible(false);
     }
   }
 
   function handleFocus() {
-    if (currentDrink === '' || !currentDrink) { 
-      drinks && setFilteredDrinks(drinks)
-      setIsDrinkSelectorVisible(true)
+    if (currentDrink === '' || !currentDrink) {
+      drinks && setFilteredDrinks(drinks);
+      setIsDrinkSelectorVisible(true);
     }
   }
 
   function handleEsc(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      setIsDrinkSelectorVisible(false)
-    } 
+      setIsDrinkSelectorVisible(false);
+    }
   }
 
   useEffect(() => {
-    window.addEventListener('keydown', handleEsc)
+    window.addEventListener('keydown', handleEsc);
 
     return () => {
-      window.removeEventListener('keydown', handleEsc)
-    }
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
-  }, [])
-
-  
   return (
     <label>
-      Search your drink: 
-      <DrinkInputContainer >
+      Search your drink:
+      <DrinkInputContainer>
         <input
-          placeholder='Type drink name! Example: Caipirinha'
+          placeholder="Type drink name! Example: Caipirinha"
           value={currentDrink}
-          onChange={(event) => handleDrinkChange(event)}
+          onChange={event => setCurrentDrink(event.target.value)}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
         <DrinksContainer visible={isDrinkSelectorVisible}>
-          {isDrinkSelectorVisible && filteredDrinks?.map(drink => (
-            <div key={drink.idDrink} tabIndex={-1} onClick={() => handleDrinkClick(drink)}>
-              <img src={drink.strDrinkThumb} alt={drink.strDrink} />
-              <span>{drink.strDrink}</span>
-            </div>
-          ))}
+          {isDrinkSelectorVisible &&
+            filteredDrinks?.map(drink => (
+              <div
+                key={drink.idDrink}
+                tabIndex={-1}
+                onClick={() => handleDrinkClick(drink)}
+              >
+                <img src={drink.strDrinkThumb} alt={drink.strDrink} />
+                <span>{drink.strDrink}</span>
+              </div>
+            ))}
         </DrinksContainer>
       </DrinkInputContainer>
     </label>
-  )
+  );
 }

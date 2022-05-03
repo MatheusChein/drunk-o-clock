@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.nav`
   background: var(--light-blue);
@@ -6,7 +6,7 @@ export const HeaderContainer = styled.nav`
   justify-content: center;
   align-items: center;
   padding: 3rem;
-`
+`;
 
 export const HeaderContent = styled.div`
   width: 100%;
@@ -14,7 +14,6 @@ export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 
   a {
     text-decoration: none;
@@ -43,4 +42,4 @@ export const HeaderContent = styled.div`
       display: none;
     }
   }
-`
+`;

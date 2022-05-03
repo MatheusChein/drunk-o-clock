@@ -1,16 +1,15 @@
-import { api } from "../services/axios";
+import { api } from '../services/axios';
 
 export function useCategory() {
-
   async function getDrinksByCategory(categoryName: string) {
     const response = await api.get(`/filter.php?c=${categoryName}`);
 
-      const { data } = response
+    const { data } = response;
 
-      return data.drinks
+    return data.drinks;
   }
 
   return {
-    getDrinksByCategory
-  }
+    getDrinksByCategory,
+  };
 }

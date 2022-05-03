@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
   background: var(--blue);
@@ -15,4 +15,4 @@ export const ButtonContainer = styled.button`
   &:hover {
     filter: brightness(0.8);
   }
-`
+`;

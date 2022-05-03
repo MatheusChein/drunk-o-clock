@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CategoryContainer = styled.div`
   text-align: left;
@@ -22,7 +22,7 @@ export const CategoryContainer = styled.div`
   @media (max-width: 720px) {
     padding: 1rem 1.5rem 1.5rem;
   }
-`
+`;
 
 export const DrinksContainer = styled.div`
   display: flex;
@@ -34,20 +34,20 @@ export const DrinksContainer = styled.div`
     background: #d6d6d6;
     border-radius: 4px;
   }
-      
+
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: var(--dark-pink);
 
     &:hover {
-    background-color: rgba(131, 90, 253, 0.7);
+      background-color: rgba(131, 90, 253, 0.7);
     }
   }
 
   @media (max-width: 720px) {
     gap: 0.8rem;
   }
-`
+`;
 
 export const DrinkContainer = styled.div`
   div {
@@ -104,4 +104,4 @@ export const DrinkContainer = styled.div`
       }
     }
   }
-`
+`;

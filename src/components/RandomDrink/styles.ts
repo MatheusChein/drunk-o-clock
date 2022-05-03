@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RandomDrinkContainer = styled.div`
   padding: 3rem 0 1.5rem;
@@ -14,10 +14,9 @@ export const RandomDrinkContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-
     h2 {
       font-size: 2.5rem;
       padding-bottom: 1rem;
     }
   }
-`
+`;

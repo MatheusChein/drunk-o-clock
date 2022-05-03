@@ -1,7 +1,7 @@
 export interface CategoryType {
-  strCategory: string
+  strCategory: string;
 }
 
 export interface CategoriesProps {
-  categories: CategoryType[]
+  categories: CategoryType[];
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CategoriesContainer = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ export const CategoriesContainer = styled.div`
       padding-bottom: 1rem;
     }
   }
-`
+`;
 
 export const CategoriesDrinks = styled.div`
   display: flex;
@@ -33,4 +33,4 @@ export const CategoriesDrinks = styled.div`
   @media (max-width: 720px) {
     gap: 2rem;
   }
-`
+`;
