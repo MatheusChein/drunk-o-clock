@@ -28,6 +28,7 @@ export const SearchDrinkByFilterForm = styled.form`
 
   label {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
 
@@ -38,7 +39,7 @@ export const SearchDrinkByFilterForm = styled.form`
       border-radius: 10px;
       padding: 5px 0.8rem;
       width: 20rem;
-      font: 400 1.2rem 'Patrick Hand', sans-serif;
+      font: 400 1rem 'Ubuntu', sans-serif;
       box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
 
       option:first-child {

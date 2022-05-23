@@ -17,7 +17,7 @@ export const DrinkInputContainer = styled.div`
     border-radius: 10px;
     padding: 5px 0.8rem;
     width: 100%;
-    font: 400 1.2rem 'Patrick Hand', sans-serif;
+    font: 400 1rem 'Ubuntu', sans-serif;
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
   }
 

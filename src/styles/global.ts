@@ -26,7 +26,7 @@ export default createGlobalStyle`
   }
 
   body, input, button, p, span {
-    font: 400 1.5rem 'Patrick Hand', sans-serif;
+    font: 400 1rem 'Ubuntu', sans-serif;
     color: var(--black);
   }
 

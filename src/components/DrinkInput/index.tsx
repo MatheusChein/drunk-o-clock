@@ -14,9 +14,11 @@ export function DrinkInput({
 }: DrinkInputProps) {
   const [isDrinkSelectorVisible, setIsDrinkSelectorVisible] = useState(false);
   const [filteredDrinks, setFilteredDrinks] = useState<CategoryDrinkType[]>([]);
+  const [isDrinkClicked, setIsDrinkClicked] = useState(false);
   const debouncedCurrentDrink = useDebounce(currentDrink, 500);
 
   async function handleDrinkChange() {
+    setIsDrinkClicked(false);
     setIsDrinkSelectorVisible(true);
     setIsButtonVisible(false);
 
@@ -42,10 +44,11 @@ export function DrinkInput({
   }
 
   useEffect(() => {
-    if (currentDrink !== '') handleDrinkChange();
+    if (currentDrink !== '' && !isDrinkClicked) handleDrinkChange();
   }, [debouncedCurrentDrink]);
 
   function handleDrinkClick(drinkClicked: CategoryDrinkType) {
+    setIsDrinkClicked(true);
     setIsDrinkSelectorVisible(false);
     setCurrentDrink(drinkClicked.strDrink);
     setCurrentDrinkId && setCurrentDrinkId(drinkClicked.idDrink);
